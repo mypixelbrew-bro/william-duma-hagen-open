@@ -1,0 +1,50 @@
+---
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/record/', label: 'The Record' },
+  { href: '/priorities/', label: 'Priorities' },
+  { href: '/about/', label: 'About' },
+  { href: '/state-enterprises/', label: 'State Enterprises' },
+  { href: '/news/', label: 'News' },
+  { href: '/contact/', label: 'Contact' },
+];
+
+const path = Astro.url.pathname;
+function isActive(href: string) {
+  if (href === '/') return path === '/';
+  return path.startsWith(href);
+}
+---
+<nav class="site-nav" aria-label="Primary">
+  <input type="checkbox" id="nav-toggle" class="visually-hidden nav-toggle-checkbox" />
+  <div class="wrap">
+    <a class="brand" href="/">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-text">
+        <span class="brand-name">William Duma MP</span>
+        <span class="brand-sub">Hagen Open</span>
+      </span>
+    </a>
+    <ul class="nav-links">
+      {links.map((link) => (
+        <li>
+          <a href={link.href} aria-current={isActive(link.href) ? 'page' : undefined}>{link.label}</a>
+        </li>
+      ))}
+    </ul>
+    <label for="nav-toggle" class="nav-toggle" aria-label="Open menu">☰</label>
+  </div>
+  <div class="nav-mobile">
+    <div class="wrap">
+      {links.map((link) => (
+        <a href={link.href} aria-current={isActive(link.href) ? 'page' : undefined}>{link.label}</a>
+      ))}
+    </div>
+  </div>
+</nav>
+
+<style>
+  .nav-toggle-checkbox:checked ~ .nav-mobile {
+    display: block;
+  }
+</style>

@@ -1,0 +1,59 @@
+---
+import { getCollection, render } from 'astro:content';
+import PageLayout from '../../layouts/PageLayout.astro';
+
+export async function getStaticPaths() {
+  const statements = await getCollection('statements');
+  const sorted = [...statements].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  return sorted.map((entry, i) => ({
+    params: { slug: entry.slug },
+    props: {
+      entry,
+      prev: sorted[i + 1] ?? null,
+      next: i > 0 ? sorted[i - 1] : null,
+    },
+  }));
+}
+
+const { entry, prev, next } = Astro.props;
+const { data } = entry;
+const { Content } = await render(entry);
+---
+<PageLayout
+  title={data.title}
+  description={data.excerpt}
+  path={`/news/${entry.slug}/`}
+  breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'News & Statements', href: '/news/' }, { label: data.title }]}
+>
+  <div class="wrap">
+    <p class="caption">{data.dateDisplay}</p>
+    <h1 style="margin-top: 10px;">{data.title}</h1>
+
+    <div class="prose" style="margin-top: 24px;">
+      <Content />
+    </div>
+
+    <div class="panel section" style="margin-top: 32px;">
+      <p style="font-weight: 700;">Cite this statement:</p>
+      <p class="muted" style="margin-top: 8px;">
+        Office of Hon. William Duma MP, Minister for State Enterprises, {data.dateDisplay}.
+      </p>
+      <p class="muted" style="margin-top: 4px;">URL: williamduma.com.pg/news/{entry.slug}/</p>
+    </div>
+
+    <nav class="prev-next section" aria-label="Statement navigation">
+      {prev ? (
+        <a href={`/news/${prev.slug}/`}>
+          <span class="label">← {prev.data.title}</span>
+          {prev.data.dateDisplay}
+        </a>
+      ) : <span />}
+      {next && (
+        <a href={`/news/${next.slug}/`} style="text-align: right;">
+          <span class="label">{next.data.title} →</span>
+          {next.data.dateDisplay}
+        </a>
+      )}
+    </nav>
+  </div>
+</PageLayout>

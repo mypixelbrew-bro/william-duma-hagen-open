@@ -1,0 +1,68 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { IMG_05 } from '../lib/images';
+---
+<PageLayout
+  title="About"
+  description="Hon. William Duma — Member for Hagen Open since 2002, Minister for State Enterprises, Party Leader of the United Resources Party."
+  path="/about/"
+  breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'About' }]}
+>
+  <div class="wrap">
+    <div class="two-col-reverse">
+      <figure>
+        <img src={IMG_05.src} alt="Hon. William Duma MP — placeholder, replace with official portrait" width="900" height="1200" />
+        <figcaption class="caption" style="margin-top: 8px;">Hon. William Duma MP — placeholder, replace with official portrait</figcaption>
+      </figure>
+      <div>
+        <h1>Hon. William Marra Duma, LLB, LLM, CMG, MP</h1>
+        <p class="subtitle" style="margin-top: 8px;">
+          Member for Hagen Open · Minister for State Enterprises · Party Leader, United Resources Party
+        </p>
+        <p class="prose" style="margin-top: 16px;">
+          William Duma has represented the people of Hagen Open in the National Parliament since 2002. He is currently serving his fifth consecutive term, making him one of the longest-serving sitting members in the Parliament. He holds the portfolio of Minister for State Enterprises in the Marape-Rosso cabinet, with oversight of Papua New Guinea's major state-owned entities including Air Niugini, PNG Power, PNG Ports, and the Kumul Consolidated Holdings group.
+        </p>
+      </div>
+    </div>
+
+    <section class="section">
+      <h2>Parliamentary career</h2>
+      <div class="prose" style="margin-top: 14px;">
+        <p>
+          William Duma was first elected to the National Parliament in the 2002 General Elections, winning the Hagen Open seat as an independent candidate. He subsequently joined the United Resources Party, rising to become Party Leader — a position he continues to hold.
+        </p>
+        <p>His ministerial career spans four portfolios across multiple governments:</p>
+        <ul style="margin-top: 12px; display: flex; flex-direction: column; gap: 8px;">
+          <li style="padding-left: 16px; border-left: 3px solid var(--rule);">Minister for Environment and Conservation — Somare-Marat cabinet, 2003</li>
+          <li style="padding-left: 16px; border-left: 3px solid var(--rule);">Minister for Petroleum and Energy — Somare-Temu cabinet, 2007; O'Neill-Namah cabinet, 2011; O'Neill-Dion cabinet, 2012–2014</li>
+          <li style="padding-left: 16px; border-left: 3px solid var(--rule);">Minister for Public Enterprise and State Investment — 2014–2017</li>
+          <li style="padding-left: 16px; border-left: 3px solid var(--rule);">Minister for State Enterprises — Marape-Rosso cabinet, 2020–present</li>
+        </ul>
+        <p>
+          As Minister for Petroleum and Energy, he oversaw the regulatory framework during the construction phase of the PNG LNG project. As Minister for State Enterprises, he has led the government's SOE governance reform agenda, introducing performance-based contracts for SOE executives, independent recruitment for board appointments, and mandatory public financial reporting.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Education</h2>
+      <p class="prose" style="margin-top: 14px;">
+        William Duma holds a Bachelor of Laws (LLB) from the University of Papua New Guinea and a Master of Laws (LLM) from the University of Sydney. Before entering politics, he practiced as a barrister and solicitor of the National and Supreme Courts of Papua New Guinea.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>United Resources Party</h2>
+      <p class="prose" style="margin-top: 14px;">
+        William Duma is the Party Leader of the United Resources Party (URP). The party currently holds 10 seats in the National Parliament following the 2022 General Elections, making it one of the significant coalition partners in the Marape-Rosso government. URP members hold seats across five provinces — Western Highlands, Eastern Highlands, Morobe, East New Britain, and Enga. Under Duma's leadership, the party's platform centres on resource sector governance, equitable distribution of resource revenues to landowner communities, and infrastructure investment in rural electorates.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Hagen Open</h2>
+      <p class="prose" style="margin-top: 14px;">
+        William Duma was born and raised in the Mount Hagen area. He has won the Hagen Open seat in every general election since 2002 — the 2002, 2007, 2012, 2017 and 2022 elections — a record that reflects sustained support across the electorate's 40 wards. His office operates from the district headquarters at Mount Hagen, and he maintains a regular schedule of ward-level consultations. The full record of DSIP and PSIP projects delivered under his tenure is published on this website.
+      </p>
+    </section>
+  </div>
+</PageLayout>

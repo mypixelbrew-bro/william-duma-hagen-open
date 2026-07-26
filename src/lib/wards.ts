@@ -1,0 +1,48 @@
+export interface Ward {
+  number: number;
+  name: string;
+  projects: number;
+}
+
+export const WARDS: Ward[] = [
+  { number: 1, name: 'Kumunga', projects: 3 },
+  { number: 2, name: 'Kiliga', projects: 2 },
+  { number: 3, name: 'Kelua 2', projects: 2 },
+  { number: 4, name: 'Kuguma', projects: 2 },
+  { number: 5, name: 'Kelua 1', projects: 1 },
+  { number: 6, name: 'Kik', projects: 2 },
+  { number: 7, name: 'Tega', projects: 1 },
+  { number: 8, name: 'Koglamp', projects: 2 },
+  { number: 9, name: 'Tiling', projects: 1 },
+  { number: 10, name: 'Kingalrui 1', projects: 2 },
+  { number: 11, name: 'Korobuk', projects: 2 },
+  { number: 12, name: 'Biaprui', projects: 2 },
+  { number: 13, name: 'Keltiga', projects: 1 },
+  { number: 14, name: 'Gabina', projects: 2 },
+  { number: 15, name: 'Palim 2', projects: 1 },
+  { number: 16, name: 'Palim 1', projects: 2 },
+  { number: 17, name: 'Koge 1', projects: 2 },
+  { number: 18, name: 'Koge 2', projects: 1 },
+  { number: 19, name: 'Minimp', projects: 2 },
+  { number: 20, name: 'Ogelbeng', projects: 3 },
+  { number: 21, name: 'Anga', projects: 2 },
+  { number: 22, name: 'Pulgimp', projects: 2 },
+  { number: 23, name: 'Mulga', projects: 2 },
+  { number: 24, name: 'Kitiga', projects: 1 },
+  { number: 25, name: 'Pungaminga', projects: 2 },
+  { number: 26, name: 'Kogmul', projects: 1 },
+  { number: 27, name: 'Pits', projects: 2 },
+  { number: 28, name: 'Togoba No.1', projects: 3 },
+  { number: 29, name: 'Kagamuga', projects: 2 },
+  { number: 30, name: 'Kingalrui 2', projects: 1 },
+  { number: 31, name: 'Baisu', projects: 2 },
+  { number: 32, name: 'Wimbuka', projects: 2 },
+  { number: 33, name: 'Kilam', projects: 2 },
+  { number: 34, name: 'Kenta', projects: 2 },
+  { number: 35, name: 'Koibuga', projects: 1 },
+  { number: 36, name: 'Kagamuga Rural', projects: 1 },
+  { number: 37, name: 'Kugl', projects: 1 },
+  { number: 38, name: 'Waninga', projects: 1 },
+  { number: 39, name: 'Kuguramp', projects: 1 },
+  { number: 40, name: 'Togoba 2', projects: 1 },
+];

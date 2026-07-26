@@ -1,0 +1,48 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import RequestForm from '../components/RequestForm.tsx';
+---
+<PageLayout
+  title="Constituent Services"
+  description="Report a service issue or request help from the district office. You will receive a reference number to follow up with."
+  path="/services/"
+  breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Constituent Services' }]}
+>
+  <div class="wrap">
+    <h1>Request office assistance</h1>
+    <p class="subtitle" style="margin-top: 10px;">
+      Report a service issue or request help from the district office. You will receive a reference number to follow up with.
+    </p>
+
+    <section class="section">
+      <h2>How it works</h2>
+      <div class="steps">
+        <div class="step">
+          <span class="step-num">STEP 1</span>
+          <h3>Tell us what is happening</h3>
+          <p class="muted" style="margin-top: 8px;">Choose a category (education, health, roads, water, other) and describe the issue in your own words.</p>
+        </div>
+        <div class="step">
+          <span class="step-num">STEP 2</span>
+          <h3>Add your ward</h3>
+          <p class="muted" style="margin-top: 8px;">Select your ward from the list. This helps the office route your request to the right officer.</p>
+        </div>
+        <div class="step">
+          <span class="step-num">STEP 3</span>
+          <h3>Get a reference number</h3>
+          <p class="muted" style="margin-top: 8px;">A reference number is generated immediately. Use it to follow up at the district office or by phone.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="max-width: 560px;">
+      <RequestForm client:load />
+      <p class="muted" style="margin-top: 20px; font-size: 13px;">
+        This form sends your request to the district office. It is not monitored outside of office hours (Monday–Friday, 8am–4pm). For emergencies, call the office directly.
+      </p>
+      <p class="muted" style="margin-top: 10px; font-size: 13px;">
+        Your name, phone number and request details are sent only to the district office. They are not published or shared.
+      </p>
+    </section>
+  </div>
+</PageLayout>

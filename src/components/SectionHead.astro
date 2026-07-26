@@ -1,0 +1,16 @@
+---
+interface Props {
+  heading: string;
+  meta?: string;
+  subtitle?: string;
+}
+const { heading, meta, subtitle } = Astro.props;
+---
+<div class="section-head-wrap">
+  <div class="section-head">
+    <h2>{heading}</h2>
+    {meta && <span class="meta">{meta}</span>}
+  </div>
+  {subtitle && <p class="section-head-sub">{subtitle}</p>}
+  <hr class="section-rule" />
+</div>

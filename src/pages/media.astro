@@ -1,0 +1,79 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { IMG_05 } from '../lib/images';
+---
+<PageLayout
+  title="Press Kit"
+  description="Approved portraits, biography in three lengths, and direct links to all public statements for media enquiries."
+  path="/media/"
+  breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Media' }]}
+>
+  <div class="wrap">
+    <h1>Press kit</h1>
+    <p class="subtitle" style="margin-top: 10px;">
+      Approved portraits, biography in three lengths, and direct links to all public statements. For media enquiries, contact the office at office@williamduma.com.pg.
+    </p>
+
+    <section class="section">
+      <h2>Official portrait</h2>
+      <div class="two-col" style="margin-top: 16px; align-items: end;">
+        <img src={IMG_05.src} alt="Hon. William Duma MP — placeholder, replace with official portrait" width="1200" height="1600" style="width: 100%; max-width: 320px;" />
+        <img src={IMG_05.src} alt="Hon. William Duma MP — placeholder, replace with official portrait, web resolution" width="400" height="533" style="width: 100%; max-width: 140px;" />
+      </div>
+      <p class="caption" style="margin-top: 10px;">
+        Hon. William Duma MP — placeholder, replace with official portrait. High-resolution download available.
+      </p>
+      <p style="margin-top: 14px;">
+        <a class="btn btn-outline" href={IMG_05.src} download>Download portrait (high resolution)</a>
+      </p>
+      <p class="muted" style="margin-top: 10px; font-size: 13px;">
+        This portrait may be used without permission for news reporting purposes. Credit: Office of Hon. William Duma MP.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Biography</h2>
+
+      <div style="margin-top: 16px;">
+        <p class="caption">One-line (for captions and bylines)</p>
+        <p class="prose" style="margin-top: 8px;">
+          Hon. William Duma, LLB, LLM, CMG, MP, is the Member for Hagen Open, Minister for State Enterprises, and Party Leader of the United Resources Party.
+        </p>
+      </div>
+
+      <div style="margin-top: 24px;">
+        <p class="caption">Short (for news stories, ~80 words)</p>
+        <p class="prose" style="margin-top: 8px;">
+          Hon. William Duma is the Member for Hagen Open in the National Parliament of Papua New Guinea, a seat he has held since 2002. He currently serves as Minister for State Enterprises in the Marape-Rosso cabinet, with oversight of Air Niugini, PNG Power, PNG Ports and Kumul Consolidated Holdings. He is Party Leader of the United Resources Party. He holds a Bachelor of Laws from the University of Papua New Guinea and a Master of Laws from the University of Sydney.
+        </p>
+      </div>
+
+      <div style="margin-top: 24px;">
+        <p class="caption">Full (for profiles and features, ~200 words)</p>
+        <p class="prose" style="margin-top: 8px;">
+          Hon. William Marra Duma, LLB, LLM, CMG, MP, has represented the electorate of Hagen Open in the National Parliament of Papua New Guinea since 2002 and is currently serving his fifth consecutive term. He holds the portfolio of Minister for State Enterprises in the Marape-Rosso cabinet, with responsibility for the governance and performance of Papua New Guinea's major state-owned entities, including Air Niugini, PNG Power, PNG Ports Corporation, and the Kumul Consolidated Holdings group. He is also Party Leader of the United Resources Party, which holds 10 seats in the current Parliament. His previous ministerial portfolios include Environment and Conservation (2003), Petroleum and Energy (2007–2014), and Public Enterprise and State Investment (2014–2017). Prior to entering politics, he practiced as a barrister and solicitor of the National and Supreme Courts of Papua New Guinea. He holds a Bachelor of Laws from the University of Papua New Guinea and a Master of Laws from the University of Sydney. He was born and raised in the Mount Hagen area, Western Highlands Province.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <p class="prose">
+        All public statements are published at williamduma.com.pg/news/ and are citable at their individual URLs.
+      </p>
+      <p style="margin-top: 12px;">
+        <a href="/news/" style="font-weight: 700; font-size: 13px;">View all statements →</a>
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Contact for media</h2>
+      <div class="prose" style="margin-top: 14px;">
+        <p>Email: office@williamduma.com.pg</p>
+        <p>Phone: +675 542 XXXX</p>
+        <p class="muted">
+          The office aims to respond to media enquiries within 24 hours during sitting weeks and within 48 hours at other times.
+        </p>
+      </div>
+    </section>
+  </div>
+</PageLayout>

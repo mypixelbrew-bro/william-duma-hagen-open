@@ -1,0 +1,71 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { IMG_01 } from '../lib/images';
+import { WARDS } from '../lib/wards';
+---
+<PageLayout
+  title="Electorate Profile"
+  description="Hagen Open Electorate — Mount Hagen District, Western Highlands Province. Population, wards, LLGs and key facts."
+  path="/electorate/"
+  breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Electorate Profile' }]}
+>
+  <div class="wrap">
+    <h1>Hagen Open Electorate</h1>
+    <p class="subtitle" style="margin-top: 10px;">Mount Hagen District, Western Highlands Province</p>
+
+    <div class="prose" style="margin-top: 24px;">
+      <p>
+        Hagen Open is one of four open electorates in Western Highlands Province, covering the Mount Hagen District. The electorate includes the rural and peri-urban areas surrounding Mount Hagen, the provincial capital and the largest city in the Highlands region. It is administered through two local-level governments: Mount Hagen Rural LLG (40 wards) and a portion of Mount Hagen Urban LLG.
+      </p>
+      <p>
+        The electorate's population was approximately 123,000 at the 2011 census. The economy is based on coffee production, fresh-produce agriculture, and small-scale trade centred on Mount Hagen's markets. The electorate has road access via the Highlands Highway, which connects Mount Hagen to Lae and the coast, and via Kagamuga Airport, which services domestic flights to Port Moresby, Lae, and other Highlands centres.
+      </p>
+    </div>
+
+    <section class="section">
+      <div class="info-panel">
+        <h3>Key facts</h3>
+        <dl style="margin-top: 14px;">
+          <div class="row"><dt>Province</dt><dd>Western Highlands</dd></div>
+          <div class="row"><dt>District</dt><dd>Mount Hagen</dd></div>
+          <div class="row"><dt>Capital</dt><dd>Mount Hagen</dd></div>
+          <div class="row"><dt>LLGs</dt><dd>Mount Hagen Rural, Mount Hagen Urban (part)</dd></div>
+          <div class="row"><dt>Wards</dt><dd>40+ (Mount Hagen Rural LLG)</dd></div>
+          <div class="row"><dt>Population</dt><dd>~123,000 (2011 census)</dd></div>
+          <div class="row"><dt>Main economic activity</dt><dd>Coffee, fresh produce, trade</dd></div>
+          <div class="row"><dt>Access</dt><dd>Highlands Highway, Kagamuga Airport</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Wards — Mount Hagen Rural LLG</h2>
+      <table class="data-table" style="margin-top: 20px;">
+        <thead>
+          <tr>
+            <th scope="col">Ward</th>
+            <th scope="col">Name</th>
+            <th scope="col">Projects (current term)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {WARDS.map((w) => (
+            <tr>
+              <td data-label="Ward">{w.number}</td>
+              <td data-label="Name">{w.name}</td>
+              <td data-label="Projects">
+                <a href={`/record/?ward=${w.number}`}>{w.projects}</a>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p class="subtitle" style="margin-top: 14px;">Project counts link to the full record, filtered by ward.</p>
+    </section>
+
+    <section class="section">
+      <img src={IMG_01.src} alt="Mount Hagen township, Western Highlands Province — placeholder image" width="1600" height="900" loading="lazy" style="width: 100%;" />
+      <p class="caption" style="margin-top: 8px;">Mount Hagen township, Western Highlands Province — placeholder image</p>
+    </section>
+  </div>
+</PageLayout>

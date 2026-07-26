@@ -1,0 +1,89 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { IMG_01, IMG_02, IMG_03, IMG_04 } from '../lib/images';
+
+const sectors = [
+  {
+    heading: 'Education',
+    image: IMG_02,
+    caption: 'Biaprui Primary School classrooms, completed September 2024 — placeholder image',
+    body: `Hagen Open has 47 primary schools. Of those, 31 still operate with at least one bush-material classroom. The current term delivered 32 classroom projects; the next term targets the remaining 15 schools that have not yet received any DSIP classroom funding. Priority will be given to schools where student-to-classroom ratios exceed 60:1. A secondary priority is teacher housing — 22 schools in the electorate have no on-site teacher accommodation, which is the single largest driver of teacher absenteeism in rural wards.`,
+    commitments: [
+      '15 new classroom blocks at unfunded schools — estimated K 2.4 million',
+      '10 teacher housing units at schools with the highest absenteeism — estimated K 850,000',
+      'Library and reading-resource supply to all 47 schools — estimated K 280,000',
+    ],
+  },
+  {
+    heading: 'Health',
+    image: IMG_03,
+    caption: 'Korobuk aid post after rebuild, June 2025 — placeholder image',
+    body: `The electorate has 14 designated aid post sites. All 14 now have a permanent structure — the last three were completed in 2025. The next term shifts focus from buildings to staffing and supply. Eight of the 14 aid posts are currently unstaffed or staffed fewer than three days per week. Medical supply delivery is unreliable, with most aid posts reporting stockouts of basic items (antimalarials, oral rehydration salts, basic wound care) lasting two weeks or more per quarter. The priority is a reliable supply chain and a staffing incentive that keeps health workers posted in rural wards rather than gravitating to Mount Hagen General Hospital.`,
+    commitments: [
+      'Staff housing at eight unstaffed aid posts — estimated K 640,000',
+      'Cold-chain storage upgrade at four aid posts for vaccine delivery — estimated K 180,000',
+      'Quarterly medical supply run funded and scheduled through the district health office — estimated K 120,000 per year',
+    ],
+  },
+  {
+    heading: 'Roads & Bridges',
+    image: IMG_04,
+    caption: 'Koglamp–Tiling road seal, completed April 2025 — placeholder image',
+    body: `38 kilometres of road have been sealed in the current term, connecting 11 wards to the Mount Hagen urban core and the Highlands Highway. The next term focuses on feeder roads — the unpaved connections between the sealed network and individual communities. There are 26 identified feeder-road segments totalling approximately 64 kilometres that are currently impassable for more than three months per year during the wet season. Grading and basic drainage on these segments is cheaper per kilometre than sealing and delivers immediate, measurable improvement in market access for cash-crop farmers.`,
+    commitments: [
+      '26 feeder-road segments graded and drained — estimated K 1.8 million',
+      'Two permanent bridge replacements (Pits–Kogmul, Kuguramp crossing) — estimated K 960,000',
+      'Routine maintenance fund for sealed roads — estimated K 200,000 per year',
+    ],
+  },
+  {
+    heading: 'Water & Sanitation',
+    image: IMG_01,
+    caption: 'Highland valley near Hagen Open — placeholder image',
+    body: `Gravity-fed water systems are the most cost-effective infrastructure investment in the electorate. The current term delivered 14 systems serving 23 villages. The next term targets the 17 villages in the upper wards (Wards 35–40) that currently rely entirely on creek water. These wards have the highest rates of waterborne illness in the electorate according to district health data. Each gravity-fed system costs between K 80,000 and K 155,000 depending on distance from the source, and serves an average of 200–400 people.`,
+    commitments: [
+      '12 new gravity-fed water systems in Wards 35–40 — estimated K 1.4 million',
+      'Institutional water tanks at 10 schools without rainwater collection — estimated K 150,000',
+      'Community-managed sanitation program (pit latrines) at 20 villages — estimated K 300,000',
+    ],
+  },
+];
+---
+<PageLayout
+  title="Priorities"
+  description="Costed commitments for the 2027–2032 term across education, health, roads and water, drawn from ward consultations and the current delivery record."
+  path="/priorities/"
+  breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Priorities' }]}
+>
+  <div class="wrap">
+    <h1>Priorities for 2027–2032</h1>
+    <p class="subtitle" style="margin-top: 10px;">
+      What the next term will focus on, based on the needs identified across the electorate and the delivery gaps in the current record.
+    </p>
+    <p class="prose" style="margin-top: 24px;">
+      The priorities below are drawn from three sources: ward-level consultations held between March and June 2026, an audit of unfinished and unfunded projects from the current DSIP cycle, and the policy platform of the United Resources Party. They are commitments, not promises — each one is costed, and the total fits within a realistic five-year DSIP and PSIP envelope for a single open electorate.
+    </p>
+  </div>
+
+  {sectors.map((s) => (
+    <section class="section wrap">
+      <img src={s.image.src} alt={s.caption} width="1600" height="900" loading="lazy" style="width: 100%; aspect-ratio: 21 / 9; object-fit: cover;" />
+      <p class="caption" style="margin-top: 8px;">{s.caption}</p>
+      <h2 style="margin-top: 20px;">{s.heading}</h2>
+      <p class="prose" style="margin-top: 14px;">{s.body}</p>
+      <ul style="margin-top: 16px; display: flex; flex-direction: column; gap: 10px;">
+        {s.commitments.map((c) => (
+          <li style="padding-left: 16px; border-left: 3px solid var(--rule); font-size: 14px;">{c}</li>
+        ))}
+      </ul>
+    </section>
+  ))}
+
+  <section class="section wrap">
+    <div class="panel">
+      <p style="font-weight: 800; font-size: 18px;">Estimated five-year total: K 9.3 million</p>
+      <p class="muted" style="margin-top: 8px;">Average annual DSIP allocation for an open electorate: K 2.0–2.5 million</p>
+      <p class="muted" style="margin-top: 8px;">These commitments fit within the expected funding envelope without supplementary appropriation.</p>
+    </div>
+  </section>
+</PageLayout>

@@ -1,0 +1,125 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '../layouts/PageLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHead from '../components/SectionHead.astro';
+import Card from '../components/Card.astro';
+import RecordTable from '../components/RecordTable.astro';
+import QuoteBlock from '../components/QuoteBlock.astro';
+import Button from '../components/Button.astro';
+import { IMG_02, IMG_03, IMG_04, IMG_01 } from '../lib/images';
+
+const allProjects = await getCollection('projects');
+const latestProjects = [...allProjects]
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 5)
+  .map((entry) => ({
+    slug: entry.slug,
+    title: entry.data.title,
+    ward: entry.data.ward,
+    wardLabel: `Ward ${entry.data.ward}`,
+    sector: entry.data.sector,
+    dateDisplay: entry.data.dateDisplay,
+    cost: entry.data.cost,
+    status: entry.data.status,
+  }));
+
+const allStatements = await getCollection('statements');
+const latestStatement = [...allStatements].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())[0];
+---
+<PageLayout
+  title="Home"
+  description="Hon. William Duma MP, Member for Hagen Open — a complete, project-by-project record of DSIP and PSIP funded infrastructure since 2002."
+  path="/"
+>
+  <Hero
+    eyebrow="THE RECORD — 2002 TO 2026"
+    heading="Six terms. One electorate. Every project accounted for."
+    description="A complete record of funded and delivered infrastructure across every ward of Hagen Open."
+    ctaHref="/record/"
+    ctaLabel="View the full record →"
+    caption="Mount Hagen township, Western Highlands Province — placeholder image"
+  />
+
+  <section class="stats-strip">
+    <div class="wrap">
+      <div>
+        <p class="stat-number tabular">87</p>
+        <p class="stat-label">Projects funded</p>
+      </div>
+      <div>
+        <p class="stat-number tabular">K 42.6m</p>
+        <p class="stat-label">Total committed</p>
+      </div>
+      <div>
+        <p class="stat-number tabular">40</p>
+        <p class="stat-label">Wards covered</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <SectionHead heading="Priority areas" subtitle="Delivery by sector, updated as projects close out." />
+    <div class="card-grid">
+      <Card
+        image={IMG_02}
+        alt="Placeholder — completed primary school building"
+        heading="Education"
+        body="32 classroom and library projects across 18 wards, including six new double-classroom buildings completed in 2024."
+        href="/record/?sector=Education"
+        linkText="View education projects →"
+      />
+      <Card
+        image={IMG_03}
+        alt="Placeholder — rural health aid post"
+        heading="Health"
+        body="12 aid posts rebuilt or upgraded, three new rural water supply systems, two ambulance stations."
+        href="/record/?sector=Health"
+        linkText="View health projects →"
+      />
+      <Card
+        image={IMG_04}
+        alt="Placeholder — sealed highland road"
+        heading="Roads"
+        body="38 kilometres of road sealed, four bridges completed, six feeder roads graded and maintained."
+        href="/record/?sector=Roads"
+        linkText="View road projects →"
+      />
+      <Card
+        image={IMG_01}
+        alt="Placeholder — Mount Hagen township landscape"
+        heading="Water & Sanitation"
+        body="14 gravity-fed water systems serving 23 villages, six institutional water tanks at schools and aid posts."
+        href="/record/?sector=Water"
+        linkText="View water projects →"
+      />
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <SectionHead heading="Latest entries" meta="87 total" subtitle="Most recently updated projects in Hagen Open." />
+    <RecordTable rows={latestProjects} showCost={false} tableId="home-latest-table" />
+    <p style="margin-top: 20px;">
+      <Button href="/record/" variant="outline">View the full record →</Button>
+    </p>
+  </section>
+
+  <section class="section wrap">
+    <SectionHead heading="Latest statement" />
+    <div class="panel" style="margin-top: 20px;">
+      <p class="caption">{latestStatement.data.dateDisplay}</p>
+      <h3 style="margin-top: 8px;">{latestStatement.data.title}</h3>
+      <p class="muted" style="margin-top: 10px;">&ldquo;{latestStatement.data.homeExcerpt ?? latestStatement.data.excerpt}&rdquo;</p>
+      <p style="margin-top: 12px;">
+        <a href={`/news/${latestStatement.slug}/`} style="font-weight: 700; font-size: 13px;">Read the full statement →</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <QuoteBlock
+      quote="The record has to hold up on its own, project by project, whether the news is finished or not. A community that can see what was funded and what was built does not need to take anyone's word for it."
+      attribution="Hon. William Duma MP, Member for Hagen Open"
+    />
+  </section>
+</PageLayout>

@@ -1,0 +1,46 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '../../layouts/PageLayout.astro';
+
+const allStatements = await getCollection('statements');
+const statements = [...allStatements].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+function dateParts(display: string) {
+  const [day, month, year] = display.split(' ');
+  return { day, month, year };
+}
+---
+<PageLayout
+  title="News & Statements"
+  description="Official statements and updates from the office of the Member for Hagen Open."
+  path="/news/"
+  breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'News & Statements' }]}
+>
+  <div class="wrap">
+    <h1>News &amp; Statements</h1>
+    <p class="subtitle" style="margin-top: 10px;">
+      Official statements and updates from the office of the Member for Hagen Open.
+    </p>
+
+    <div class="statement-list">
+      {statements.map((s) => {
+        const { day, month, year } = dateParts(s.data.dateDisplay);
+        return (
+          <article class="statement-item">
+            <div class="statement-date">
+              {day}<br />{month}<br />{year}
+            </div>
+            <div>
+              <h3><a href={`/news/${s.slug}/`}>{s.data.title}</a></h3>
+              <p>{s.data.excerpt}</p>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+
+    <p class="subtitle" style="margin-top: 20px;">
+      Showing {statements.length} of 24 statements. Older statements available on request from the district office.
+    </p>
+  </div>
+</PageLayout>

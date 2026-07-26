@@ -1,0 +1,48 @@
+---
+import '../styles/global.css';
+import { IMG_01 } from '../lib/images';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  ogImage?: string;
+}
+const { title, description, path, ogImage } = Astro.props;
+const canonical = new URL(path, Astro.site).toString();
+const ogImageUrl = new URL(ogImage ?? IMG_01.src ?? IMG_01, Astro.site).toString();
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} — Hon. William Duma MP, Hagen Open</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:title" content={`${title} — Hon. William Duma MP, Hagen Open`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content="website" />
+
+    <!--
+      NOTE: Public Sans is loaded from Google Fonts for development convenience.
+      Production must self-host a subset WOFF2 (see BUILD NOTES) to avoid the
+      third-party request this creates on first paint.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="icon" href="data:," />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <slot />
+  </body>
+</html>

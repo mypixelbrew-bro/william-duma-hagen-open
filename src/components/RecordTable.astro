@@ -1,0 +1,47 @@
+---
+import StatusDot from './StatusDot.astro';
+
+interface Row {
+  slug: string;
+  title: string;
+  ward: number;
+  wardLabel: string;
+  sector: string;
+  dateDisplay: string;
+  cost: number;
+  status: 'Delivered' | 'Underway' | 'Not started';
+}
+interface Props {
+  rows: Row[];
+  showCost?: boolean;
+  tableId?: string;
+}
+const { rows, showCost = true, tableId } = Astro.props;
+
+function formatCost(n: number) {
+  return `K ${n.toLocaleString('en-US')}`;
+}
+---
+<table class="record-table" id={tableId}>
+  <thead>
+    <tr>
+      <th scope="col">Project</th>
+      {showCost && <th scope="col" class="num">Cost</th>}
+      <th scope="col" class="num">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {rows.map((row) => (
+      <tr data-sector={row.sector} data-ward={row.ward}>
+        <td>
+          <a href={`/record/${row.slug}/`}>{row.title}</a>
+          <p class="record-row-meta">{row.wardLabel} · {row.sector} · {row.dateDisplay}</p>
+        </td>
+        {showCost && <td class="num tabular">{formatCost(row.cost)}</td>}
+        <td class="num">
+          <StatusDot status={row.status} />
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>

@@ -1,0 +1,12 @@
+---
+interface Props {
+  status: 'Delivered' | 'Underway' | 'Not started';
+}
+const { status } = Astro.props;
+const className =
+  status === 'Delivered' ? 'status-delivered' : status === 'Underway' ? 'status-underway' : 'status-notstarted';
+---
+<span class={`status ${className}`}>
+  <span class="status-dot" aria-hidden="true"></span>
+  {status}
+</span>

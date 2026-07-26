@@ -1,0 +1,170 @@
+---
+import { getCollection, render } from 'astro:content';
+import PageLayout from '../../layouts/PageLayout.astro';
+import StatusDot from '../../components/StatusDot.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import { IMG_01, IMG_02, IMG_03, IMG_04 } from '../../lib/images';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { data } = entry;
+const { Content } = await render(entry);
+
+const sectorImage: Record<string, { src: string }> = {
+  Education: IMG_02,
+  Health: IMG_03,
+  Roads: IMG_04,
+  Water: IMG_01,
+  Markets: IMG_01,
+  Administration: IMG_01,
+};
+
+const imageById: Record<string, { src: string }> = { IMG_01, IMG_02, IMG_03, IMG_04 };
+const resolvedGallery = data.gallery
+  ? data.gallery.map((g) => ({
+      src: (imageById[g.image] ?? sectorImage[data.sector]).src,
+      caption: g.caption,
+    }))
+  : [{ src: sectorImage[data.sector].src, caption: `${data.title} — placeholder image` }];
+
+const allProjects = await getCollection('projects');
+const related = allProjects
+  .filter((p) => p.data.sector === data.sector && p.slug !== entry.slug)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+
+const statusColumn =
+  data.status === 'Delivered'
+    ? { label: 'Completed', value: data.completed }
+    : data.status === 'Underway'
+      ? { label: 'Started', value: data.started ?? data.funded }
+      : { label: 'Funded', value: data.funded };
+---
+<PageLayout
+  title={data.title}
+  description={`${data.title} — Ward ${data.ward}, ${data.llg} LLG. ${data.sector} project funded through ${data.fundingSource}, status: ${data.status}.`}
+  path={`/record/${entry.slug}/`}
+  breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'The Record', href: '/record/' }, { label: data.title }]}
+>
+  <div class="wrap">
+    <h1>{data.title}</h1>
+    <p class="subtitle" style="margin-top: 8px;">
+      Ward {data.ward} — {data.wardName}, {data.llg} LLG · {data.sector}
+    </p>
+  </div>
+
+  <section class="info-strip section" style="margin-top: 24px;">
+    <div class="wrap">
+      <div class="info-strip-item">
+        <span class="caption">Status</span>
+        <div class="value"><StatusDot status={data.status} /></div>
+      </div>
+      <div class="info-strip-item">
+        <span class="caption">Cost</span>
+        <p class="value tabular">K {data.cost.toLocaleString('en-US')}</p>
+      </div>
+      <div class="info-strip-item">
+        <span class="caption">{statusColumn.label}</span>
+        <p class="value">{statusColumn.value}</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap section">
+    <div class="two-col">
+      <div>
+        <h2>Description</h2>
+        <div class="prose" style="margin-top: 14px;">
+          <Content />
+        </div>
+
+        <div class="gallery">
+          {resolvedGallery.map((g) => (
+            <figure>
+              <img src={g.src} alt={g.caption} width="1200" height="900" loading="lazy" />
+              <figcaption>{g.caption}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+
+      <aside class="info-panel">
+        <h3>Project information</h3>
+        <dl style="margin-top: 14px;">
+          <div class="row">
+            <dt>Funded</dt>
+            <dd>{data.funded}</dd>
+          </div>
+          {data.started && (
+            <div class="row">
+              <dt>Started</dt>
+              <dd>{data.started}</dd>
+            </div>
+          )}
+          {data.completed && (
+            <div class="row">
+              <dt>Completed</dt>
+              <dd>{data.completed}</dd>
+            </div>
+          )}
+          <div class="row">
+            <dt>Cost</dt>
+            <dd class="tabular">K {data.cost.toLocaleString('en-US')}</dd>
+          </div>
+          <div class="row">
+            <dt>Funding source</dt>
+            <dd>{data.fundingSource}</dd>
+          </div>
+          <div class="row">
+            <dt>Contractor</dt>
+            <dd>{data.contractor}</dd>
+          </div>
+          <div class="row">
+            <dt>Ward</dt>
+            <dd>{data.ward} — {data.wardName}</dd>
+          </div>
+          <div class="row">
+            <dt>LLG</dt>
+            <dd>{data.llg}</dd>
+          </div>
+          <div class="row">
+            <dt>Sector</dt>
+            <dd>{data.sector}</dd>
+          </div>
+          {data.beneficiaries && (
+            <div class="row">
+              <dt>Beneficiaries</dt>
+              <dd>{data.beneficiaries}</dd>
+            </div>
+          )}
+        </dl>
+      </aside>
+    </div>
+  </div>
+
+  {related.length > 0 && (
+    <section class="section wrap">
+      <SectionHead heading={`Other ${data.sector.toLowerCase()} projects`} />
+      <div class="record-table" style="margin-top: 12px;">
+        {related.map((r) => (
+          <div style="padding: 12px 0; border-bottom: 1px solid var(--rule);">
+            <a href={`/record/${r.slug}/`} style="font-weight: 700; color: var(--ink);">{r.data.title}</a>
+            <p class="record-row-meta">Ward {r.data.ward} · {r.data.sector} · {r.data.dateDisplay}</p>
+          </div>
+        ))}
+      </div>
+      <p style="margin-top: 16px;">
+        <a href={`/record/?sector=${data.sector}`} style="font-weight: 700; font-size: 13px;">
+          View all {data.sector.toLowerCase()} projects →
+        </a>
+      </p>
+    </section>
+  )}
+</PageLayout>

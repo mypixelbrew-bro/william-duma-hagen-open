@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" width="900" height="1200" role="img" aria-labelledby="t">
+  <title id="t">Placeholder — Hon. William Duma MP portrait</title>
+  <rect width="900" height="1200" fill="#2B4258"/>
+  <rect x="0" y="0" width="900" height="1200" fill="none" stroke="#3E5670" stroke-width="4"/>
+  <circle cx="450" cy="470" r="140" fill="#3E5670"/>
+  <path d="M280 900 Q450 720 620 900 L620 1200 L280 1200 Z" fill="#3E5670"/>
+  <text x="450" y="1040" font-family="Arial, sans-serif" font-size="24" fill="#FFFFFF" text-anchor="middle" font-weight="700">IMG-05</text>
+  <text x="450" y="1078" font-family="Arial, sans-serif" font-size="16" fill="#DDE3EA" text-anchor="middle">Placeholder — official portrait</text>
+</svg>

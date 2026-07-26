@@ -1,0 +1,49 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+---
+<PageLayout
+  title="Contact"
+  description="How to reach the office of the Member for Hagen Open — district office, parliamentary office, and other channels."
+  path="/contact/"
+  breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Contact' }]}
+>
+  <div class="wrap">
+    <h1>Contact the office</h1>
+    <p class="subtitle" style="margin-top: 10px;">
+      The district office is open weekdays. The parliamentary office operates during sitting weeks.
+    </p>
+
+    <section class="section">
+      <div class="two-col">
+        <div>
+          <h2>Hagen Open District Office</h2>
+          <div class="prose" style="margin-top: 14px;">
+            <p>Mount Hagen District Headquarters, Mount Hagen, Western Highlands Province</p>
+            <p>Phone: +675 542 XXXX (placeholder)</p>
+            <p>Hours: Monday to Friday, 8:00am – 4:00pm</p>
+            <p class="muted">
+              Walk-in enquiries welcome. For project-related questions, please bring your ward number and any reference documents.
+            </p>
+          </div>
+        </div>
+        <div>
+          <h2>Parliament Office</h2>
+          <div class="prose" style="margin-top: 14px;">
+            <p>National Parliament, Parliament House, Waigani, NCD, Papua New Guinea</p>
+            <p>Phone: +675 327 7650 (from public record)</p>
+            <p>Hours: During sitting weeks only</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Other channels</h2>
+      <div class="prose" style="margin-top: 14px;">
+        <p>Facebook: facebook.com/williamdumaMP (placeholder)</p>
+        <p>Email: office@williamduma.com.pg (placeholder)</p>
+        <p class="muted">For media enquiries, see the <a href="/media/">Press Kit</a> page.</p>
+      </div>
+    </section>
+  </div>
+</PageLayout>

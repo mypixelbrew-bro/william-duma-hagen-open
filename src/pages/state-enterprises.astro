@@ -1,0 +1,82 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import QuoteBlock from '../components/QuoteBlock.astro';
+
+const entities = [
+  {
+    name: 'Air Niugini',
+    body: "Papua New Guinea's national airline, operating domestic and international services. The airline connects all major provincial centres and serves international routes to Australia, Singapore, the Philippines, Japan, Fiji and the Solomon Islands.",
+    figure: 'Employees: ~1,800',
+  },
+  {
+    name: 'PNG Power',
+    body: 'The national electricity utility, responsible for generation, transmission and distribution across the country. Serves approximately 13% of the national population through grid-connected supply.',
+    figure: 'Employees: ~2,200',
+  },
+  {
+    name: 'PNG Ports Corporation',
+    body: "Operator of the country's four major ports: Port Moresby, Lae, Rabaul and Kimbe. Handles the vast majority of Papua New Guinea's international trade by volume.",
+    figure: 'Employees: ~600',
+  },
+  {
+    name: 'Kumul Consolidated Holdings',
+    body: "The state's investment holding company, managing government equity in major resource projects and commercial enterprises. Portfolio includes stakes in Oil Search (now Santos PNG), Newcrest (now Newmont PNG) and other resource-sector entities.",
+    figure: 'State investment holding company',
+  },
+];
+---
+<PageLayout
+  title="State Enterprises"
+  description="Minister for State Enterprises — oversight of PNG's major State-owned entities and the government's SOE reform agenda."
+  path="/state-enterprises/"
+  breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'State Enterprises' }]}
+>
+  <div class="wrap">
+    <h1>Minister for State Enterprises</h1>
+    <p class="subtitle" style="margin-top: 10px;">
+      Oversight of Papua New Guinea's major State-owned entities and the government's SOE reform agenda.
+    </p>
+
+    <p class="prose" style="margin-top: 24px;">
+      Hon. William Duma has served as Minister for State Enterprises since 2020, with responsibility for the governance and performance of Papua New Guinea's State-owned enterprise portfolio. The portfolio includes some of the country's largest employers and most critical service providers.
+    </p>
+
+    <section class="section">
+      <div class="card-grid">
+        {entities.map((e) => (
+          <div class="card card-flat">
+            <h3>{e.name}</h3>
+            <p>{e.body}</p>
+            <p class="key-figure">{e.figure}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>SOE governance reform</h2>
+      <div class="prose" style="margin-top: 14px;">
+        <p>The reform agenda introduced under Minister Duma's oversight has four pillars:</p>
+        <p>
+          <strong>Performance-based contracts.</strong> All SOE chief executives now operate under contracts tied to measurable performance outcomes. These contracts are publicly registered and reviewed annually by the SOE Performance Review Panel.
+        </p>
+        <p>
+          <strong>Independent board appointments.</strong> Board vacancies are filled through a competitive recruitment process managed by an external executive search firm. The Minister retains the power of appointment but selects only from a shortlist produced by the independent process.
+        </p>
+        <p>
+          <strong>Public financial reporting.</strong> PNG Power, Air Niugini and PNG Ports now publish quarterly financial statements, available on their respective corporate websites. Prior to 2022, none of the three published financial results outside of their annual reports to Parliament.
+        </p>
+        <p>
+          <strong>Legislative framework.</strong> The SOE Governance Amendment Bill, passed by Parliament in May 2026, codifies these reforms into law, ensuring they continue beyond any single ministerial tenure.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <QuoteBlock
+        quote="The structure has to outlast the minister. Independent boards, published accounts, contracts with consequences — that is a system, not a favour."
+        attribution="Hon. William Duma MP, PNG Investment Conference, July 2026"
+      />
+    </section>
+  </div>
+</PageLayout>
